@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>RECOMMEND</title>
+	<link rel="stylesheet" href="{{url_for('static', filename='CSS/CrimeStatsStyles.css')}}"><!--imports the CSS, JS and jquery-->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+	<script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+</head>
+<body>
+	<header class = "main-header">
+			<nav class="nav main-nav"><!--this is the main navigation bar-->
+                <ul>
+                    <a href="index.html"><li>HOME</li></a>
+					<a href="Map.html"><li>MAP</li></a>
+					<a href="Compare.html"><li>COMPARE</li></a>
+					<a href="Recommend.html"><li>RECOMMEND</li></a>
+					
+                </ul>
+            </nav>
+
+</header>
+<form id = 'myform'>
+	<h1>Please select the area you are considering moving to</h1>
+  <label for="places">Choose general area: </label>
+	<select id = "places">
+		<option>(select area)</option>
+		<option value="Boston">Boston</option>
+		<option value="East Lindsey">East Lindsey</option>
+		<option value="Fenland">Fenland</option>
+		<option value="Lincoln">Lincoln</option>
+		<option value="Newark and Sherwood">Newark and Sherwood</option>
+		<option value="North East Lincolnshire">North East Lincolnshire</option>
+		<option value="North Kesteven">North Kesteven</option>
+		<option value="North Lincolnshire">North Lincolnshire</option>
+		<option value="Peterborough">Peterborough</option>
+		<option value="South Holland">South Holland</option>
+		<option value="South Kesteven">South Kesteven</option>
+		<option value="West Lindsey">West Lindsey</option>
+
+	</select>
+<button style="color:black;" class = "button" id="myBtn" onclick="getTown(); replace();" >Confirm</button>
+</form>
+<div style="height: 1em"></div>
+<img id="recommendgraph" src="{{url_for('static', filename='IMAGES/recommend/graph3.png')}}"	>
+<div style="height: 1em"></div>
+<div id="mapData"></div>
+
+	<div id="googleMapRec" style="width:100%;height:30%;top:30px;"></div>
+
+
+
+
+<script>
+var form = document.getElementById("myform");
+function stopForm(event){event.preventDefault();}
+form.addEventListener('submit',stopForm);
+
+//gets data based on area input
+
+function getTown(){
+    var x = document.getElementById('places');
+    var name = x.options[x.selectedIndex].value;
+
+
+
+        // POST METHOD
+        fetch('/recommendjs', {
+
+            //Post request sends to main.py
+            method: 'POST',
+
+            // JSON payload containing the name of location
+            body: JSON.stringify({
+               name
+            })
+        }).then(function (response){
+            return response.text();
+        }).then(function (text) {
+
+        console.log('POST response: ');
+
+
+        console.log(text);
+        const data = text;
+		console.log(data);
+
+		var container = document.getElementById("mapData");
+
+		var div = document.createElement("div");
+		div.innerHTML = data;
+		container.appendChild(div);
+
+		document.getElementById("recommendgraph").src = "{{url_for('static', filename='IMAGES/recommend/graph3.png')}}"+"?"+(new Date()).getTime();
+        });
+
+
+    /*    fetch('/recommendjs')
+    .then(function (response) {
+        return response.text();
+    }).then(function (text) {
+
+    });*/
+
+
+}
+
+function initMap() {
+	var mapProp= {
+	  center:new google.maps.LatLng(53.16931616357729,-1.5118652343749939),
+	  zoom:5,
+	};
+	var mapOne = new google.maps.Map(document.getElementById("googleMapRec"),mapProp);
+	/*mapOne.addListener('click', function(event) {
+		const ourLat = event.latLng.lat();
+
+		const ourLong = event.latLng.lng();
+
+		myLatlng = {lat: ourLat, lng: ourLong};
+
+
+		//changes marker pos
+		var marker = new google.maps.Marker({
+		position: myLatlng,
+		map: mapOne,
+		title: 'Click to zoom'
+		});
+		});*/
+
+	setTimeout(function(){
+        // POST METHOD
+        fetch('/recommendjs2', {
+
+            //Post request sends to main.py
+            method: 'POST',
+
+            // JSON payload containing the name of location
+            body: JSON.stringify({
+
+            })
+        }).then(function (response){
+            return response.text();
+        }).then(function (text) {
+
+			console.log('POST response: ');
+
+
+			console.log(text);
+			const places = text;
+
+			var lat1=0;
+			var lat2=0;
+			var lat3=0;
+
+			var long1=0;
+			var long2=0;
+			var long3=0;
+
+			var allLocs = places.split(" ");
+			for(var i = 0; i < allLocs.length - 1; i++){
+				if(i==0){
+					lat1 = parseFloat(allLocs[i]);
+				}
+				if(i==1){
+					long1 = parseFloat(allLocs[i]);
+				}
+				if(i==2){
+					lat2 = parseFloat(allLocs[i]);
+				}
+				if(i==3){
+					long2 = parseFloat(allLocs[i]);
+				}
+				if(i==4){
+					lat3 = parseFloat(allLocs[i]);
+				}
+				if(i==5){
+					long3 = parseFloat(allLocs[i]);
+				}
+			}
+			var myLatlng1 = {lat: lat1, lng: long1};
+			var myLatlng2 = {lat: lat2, lng: long2};
+			var myLatlng3 = {lat: lat3, lng: long3};
+
+
+
+
+			var marker = new google.maps.Marker({
+                position: myLatlng1,
+                map: mapOne,
+                title: 'Click to zoom'
+                });
+            var marker2 = new google.maps.Marker({
+                position: myLatlng2,
+                map: mapOne,
+                title: 'Click to zoom'
+                });
+            var marker3 = new google.maps.Marker({
+                position: myLatlng3,
+                map: mapOne,
+                title: 'Click to zoom'
+                });
+
+        });
+	},2000);
+}
+
+
+function replace(){
+
+	document.getElementById("googleMapRec").style.visibility = "visible";
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdTUxDY7vXxANtCxOpmyVS5upivhlKsuk&callback=initMap"></script>
+
+</body>

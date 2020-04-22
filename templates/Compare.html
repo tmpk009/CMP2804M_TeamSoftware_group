@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>COMPARE</title>
+	<link rel="stylesheet" href="{{url_for('static', filename='CSS/CrimeStatsStyles.css')}}"><!--imports the CSS, JS and jquery-->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+	<script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+</head>
+<body>
+	<header class = "main-header">
+			<nav class="nav main-nav"><!--this is the main navigation bar-->
+                <ul>
+                    <a href="index.html"><li>HOME</li></a>
+					<a href="Map.html"><li>MAP</li></a>
+					<a href="Compare.html"><li>COMPARE</li></a>
+					<a href="Recommend.html"><li>RECOMMEND</li></a>
+					
+                </ul>
+            </nav>
+        </header>
+
+<div>
+<form>
+  Select your time frame:
+  <select style="color:black;" id="mySelect">
+      <option style="color:black;">Select Option (Only Lincolnshire Available)</option>
+      <option style="color:black;" value="1">Last month (from January)</option>
+      <option style="color:black;" value="3">Last 3 months</option>
+      <option style="color:black;" value="6">Last 6 months</option>
+      <option style="color:black;" value="12">Last 12 months</option>
+  </select>
+<button style="color:black" type="button" onclick="myFunction()">Try it</button>
+</form>
+
+
+</div>
+	
+<div id="googleMapOne" style="width:49%;height:500px;padding:1px;top:30px;position:relative;float:left" onclick="setTimeout(replace, 2500)"></div>
+<div id="googleMapTwo" style="width:49%;height:500px;padding:1px;top:30px;position:relative;float:right" onclick="setTimeout(replace2, 2500)"></div>
+<!--<button id="compare1" style="color:black;" type="button" onclick="replace()">Graph 1</button>
+<button id="compare2"style="color:black;" type="button" onclick="replace2()">Graph 2</button>-->
+
+<img id="compare1" src = "{{url_for('static', filename='IMAGES/compare1/graph1.png')}}" style="width:49%;height:500px;padding:1px;top:30px;position:relative;float:left" ></img>
+<img id="compare2" src = "{{url_for('static', filename='IMAGES/compare2/graph2.png')}}" style="width:49%;height:500px;padding:1px;top:30px;position:relative;float:right" ></img>
+
+<script src = "{{url_for('static', filename='JS/compare.js')}}"></script>
+<script>
+function replace(){
+    document.getElementById("compare1").src = "{{url_for('static', filename='IMAGES/compare1/graph1.png')}}"+"?"+(new Date()).getTime()
+    }
+
+function replace2(){
+    document.getElementById("compare2").src = "{{url_for('static', filename='IMAGES/compare2/graph2.png')}}"+"?"+(new Date()).getTime()
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdTUxDY7vXxANtCxOpmyVS5upivhlKsuk&callback=myMap"></script>
+</body>

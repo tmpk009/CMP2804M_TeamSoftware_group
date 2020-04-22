@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>HOME</title>
+	<link rel="stylesheet" href="{{url_for('static', filename='CSS/CrimeStatsStyles.css')}}"><!--imports the CSS, JS and jquery-->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+	<script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+</head>
+<body>
+	<header class = "main-header">
+			<nav class="nav main-nav"><!--this is the main navigation bar-->
+                <ul>
+                    <a href="index.html"><li>HOME</li></a>
+					<a href="Map.html"><li>MAP</li></a>
+					<a href="Compare.html"><li>COMPARE</li></a>
+					<a href="Recommend.html"><li>RECOMMEND</li></a>
+					
+                </ul>
+            </nav>
+        </header>
+	<div class ="container">
+			<a href="Map.html">
+				<div class="leftpane">
+					<h1>MAP</h1>
+				</div>
+			</a>
+			<a href="Compare.html">
+				<div class="middlepane">
+					<h1>COMPARE</h1>
+				</div>
+			</a>
+			<a href="Recommend.html">
+				<div class="rightpane">
+					<h1>RECOMMEND</h1>
+				</div>
+			</a>
+		</div>
+</body>

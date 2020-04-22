@@ -1,0 +1,247 @@
+@import url("https://fonts.googleapis.com/css?family=Ubuntu");/*importing fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Mukta&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+
+body, html{/*sets the bg colour*/
+	background-color: #dfe3ee;\
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+.container {
+	width: 100%;
+	height: 100%;
+}
+
+
+
+.leftpane {
+	width: 33.3%;
+	height: 100%;
+	float: left;
+	background-color: #8b9dc3;
+	border-collapse: collapse;
+    border-left:1em solid transparent;
+    border-right:1em solid transparent;
+    text-overflow: ellipsis;
+}
+
+.leftpane h1 {
+	color: #23272a;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	text-align: center;
+	font: 55em bold 'Roboto Condensed', sans-serif;
+}
+
+.leftpane:hover{
+    background-color: black;
+    color: #8b9dc3;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.middlepane {
+	width: 33.4%;
+	height: 100%;
+	float: left;
+	background-color: #dfe3ee;
+	border-collapse: collapse;
+    border-left:1em solid transparent;
+    border-right:1em solid transparent;
+    text-overflow: ellipsis;
+}
+
+.middlepane h1 {
+	color: #23272a;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	text-align: center;
+	font: 55em bold 'Roboto Condensed', sans-serif;
+}
+
+.middlepane:hover{
+    background-color: black;
+    color: #dfe3ee;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.rightpane {
+	width: 33.3%;
+	height: 100%;
+	position: relative;
+	float: left;
+	background-color: #8b9dc3;
+	border-collapse: collapse;
+    border-left:1em solid transparent;
+    border-right:1em solid transparent;
+    text-overflow: ellipsis;
+}
+
+.rightpane h1 {
+	color: #23272a;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	text-align: center;
+	font: 55em bold 'Roboto Condensed', sans-serif;
+}
+
+.rightpane:hover{
+    background-color: black;
+    color: #8b9dc3;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+@font-face {/*styles font*/
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {/*all text styling*/
+    box-sizing: border-box;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.nav ul {
+    margin: 0 auto;
+    align: center;
+    display: table;
+}
+
+.nav li {
+    display: inline;
+}
+
+.nav a {
+    display: inline-block;
+    padding: .5em;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.nav main-nav {
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: lighter;
+    border-bottom: 1px solid rgba(77, 25, 77, .3);
+	background-color: #2c2f33;
+}
+
+.nav main-nav li {
+    padding: 0 5%;
+}
+
+.nav a:hover {/*when the nav buttons are hovered over they reduce opacity and change colour slightly*/
+    background-color: rgba(150, 100, 150, .3);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.main-header {
+    background-color: #7289da;
+    /*padding-bottom: 10px;*/
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.main-footer {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding: 1rem;
+    background-color: #3366ff;
+    color: #660066;
+    
+}
+
+.main-footer-container {
+    display: flex;
+    align-items: right;
+}
+
+.main-footer-container ul {
+    flex-grow: 1;
+    text-align: end;
+}
+
+.footer-nav li {
+    padding: 0 .5em;
+}
+
+.footer-nav img {
+    width: 3em;
+    height: 3em;
+}
+
+.mySlides {
+	display:none;
+	width:50%;
+	height:50%;
+    margin-left: auto;
+    margin-right: auto;
+	
+	}
+
+#mapData{
+  border-radius: 25px;
+  background: white;
+  padding: 20px;
+  width: 200px;
+  height: 150px;
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#recommendgraph{
+    display:block;
+    margin:0 auto;
+}
+
+#googleMapRec{
+    visibility: hidden;
+}
+
+#googleMapOne, #googleMapTwo, #compare1, #compare2, #recommendgraph, #googleMapRec{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+	
+@media only screen and (min-width: 801px) {/*when on devices with resolution over 801px this will be in effect*/
+/*this removes elements that are for mobile*/
+.newline{
+	display:none;
+}
+.list{
+	display:none;
+}
+.mobilebutton{
+	display:none;
+}		
+
+}
+	
+	@media only screen and (max-width: 800px) {/*when on devices with resolution less than 800px this will be in effect*/
+
+.main-footer {/*removes the footer when on mobile*/
+	display:none;
+    
+}
+
+.block {
+    position:absolute;
+    left: 45%;
+	text-align:center;
+	margin-top:2%;
+	margin-bottom:10%;
+	display:block;
+}
+
+}
