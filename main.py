@@ -11,9 +11,9 @@ import csv
 import json
 import time
 
-
-
+# documentation @ https://pandas.pydata.org/docs/
 import pandas as pd
+# documentation @ https://matplotlib.org/3.2.1/contents.html
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -31,7 +31,6 @@ lsoa = "global"
 lsoa2 = "global"
 mnths = "1"
 latLong = "global"
-
 name = "global"
 graph1 = ""
 graph2 = ""
@@ -86,6 +85,7 @@ def mapjs():
     global lat
     global long
 
+    # POST REQUEST FOR TESTING
     # POST request
     if request.method == 'POST':
         # confirms json received by printing to local console
@@ -127,14 +127,6 @@ def mapjs():
 
 @app.route("/Compare.html")
 def compare():
-    #fileList = glob.glob('static/IMAGES//graph*.png')
-
-    #for filePath in fileList:
-     #   try:
-      #      os.remove(filePath)
-       # except:
-        #    print("Error deleting file ", filePath)
-
      #renders web page
     return render_template("Compare.html")
 # end of compare()
@@ -150,8 +142,10 @@ def comparejs():
         print(request.get_json(force=True)) # parse as JSON
         mon = request.get_json(force=True)
 
+        # gets months from web
         mnths = mon['num']
 
+        # removes currently existing csv file
         fileList = glob.glob('police_data*.csv')
 
         for filePath in fileList:
@@ -190,14 +184,6 @@ def comparejs1():
         long = mp['ourLong']
         lsoa = mp['ls']
 
-        #fileList = glob.glob('static/IMAGES/compare1/graph*.png')
-
-        #for filePath in fileList:
-         #   try:
-          #      os.remove(filePath)
-           # except:
-            #    print("Error deleting file ", filePath)
-
 
         try:
             f = open("police_data1.csv")
@@ -214,6 +200,8 @@ def comparejs1():
         exists = True
 
         return 'OK', 200
+
+    # sleeps the program to stop the file being deleted before being displayed
     time.sleep(2)
     fileList = glob.glob('static/IMAGES/compare1/graph*.png')
 
@@ -246,14 +234,6 @@ def comparejs2():
         lat2 = mp['ourLat']
         long2 = mp['ourLong']
         lsoa2 = mp['ls']
-
-        #fileList = glob.glob('static/IMAGES/graph*.png')
-
-        #for filePath in fileList:
-         #   try:
-          #      os.remove(filePath)
-           # except:
-            #    print("Error deleting file ", filePath)
 
 
         try:
@@ -436,6 +416,7 @@ def loc1():
     valu = comp1["crime_type"].value_counts()
     crimes = comp1["crime_type"].value_counts().keys()
 
+    #create graph
     plt.title("Crimes in specified area")
     plt.ylabel("Number of crime type committed")
     plt.xlabel("Crime")
@@ -477,6 +458,7 @@ def loc2():
     valu = df4["crime_type"].value_counts()
     crimes = df4["crime_type"].value_counts().keys()
 
+    # create graph
     plt.title("Crimes in specified area")
     plt.ylabel("Number of crime type committed")
     plt.xlabel("Crime")
@@ -515,14 +497,6 @@ def recommendjs():
         rec = request.get_json(force=True)
 
         name = rec['name']
-
-        #fileList = glob.glob('static/IMAGES/graph*.png')
-
-        #for filePath in fileList:
-         #   try:
-          #      os.remove(filePath)
-           # except:
-            #    print("Error deleting file ", filePath)
 
         recommendfil()
         name=""
@@ -612,6 +586,7 @@ def recommendfil():
 
     list = newdf['lsoa_name'].value_counts()[:].sort_values(ascending = False)
 
+    #gets best and worst loactions
     worst1 = str(list.index[0])
     worst2 = str(list.index[1])
     worst3 = str(list.index[2])
@@ -642,6 +617,7 @@ def recommendfil():
     highlow3 = ""
     count2=0
 
+    #breaks into a string
     for val in list_vals.split():
         if(count2==6):
             break
@@ -658,7 +634,7 @@ def recommendfil():
         count += 1
 
 
-
+    # create graph
     plt.title("Crimes per area (Worst 3 vs Best 3)")
     plt.ylabel("Number of crimes committed in last 12 months")
     plt.xlabel("Area")
